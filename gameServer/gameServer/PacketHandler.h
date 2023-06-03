@@ -78,7 +78,6 @@ public:
     void HandleClientAttack(GameSession* session, char* data, int length);
     void HandleClientAttackAdvanced(GameSession* session, char* data, int length);
 
-    void HandleClientAttacked(GameSession* session, char* data, int length);
 
     bool ValidateUser(GameSession* session);
 

@@ -35,8 +35,6 @@ void PacketHandler::HandlePacket(GameSession* session, char* data, int length)
         //HandleClientAttack(session, data, length);
         HandleClientAttackAdvanced(session, data, length);
         break;
-    case C_Attacked:
-        HandleClientAttacked(session, data, length);
     }
     
 }
@@ -183,53 +181,6 @@ void PacketHandler::HandleClientAttackAdvanced(GameSession* session, char* data,
     Protocol::C_Attack packet;
     PARSE(packet);
     session->game->AddProjectile(session->userId, PROJECTILE_SPEED, packet.directionx(), packet.directiony(), 10);
-}
-
-void PacketHandler::HandleClientAttacked(GameSession* session, char* data, int length)
-{
-    if (ValidateUser(session) == false)
-    {
-        return;
-    }
-
-    //나중에 공격력 있을 수도 있으니
-    Protocol::C_Attacked packet;
-    PARSE(packet);
-
-    
-    Protocol::S_Attacked sendPacket;
-    //sendPacket.set_userid(session->user->GetUserId());
-
-
-
-    //체력 깎기 (user info에 체력 두고 관리해야할 듯, 수정필요)
-    //int& hp = session->user->hp -= 10;
-    //userInfo.set_hp(hp);
-
-    ////죽으면 상태 변경
-    //if (hp <= 0)
-    //{
-    //    userInfo.mutable_moveinfo()->set_state(Protocol::DEAD);
-    //    session->room->Dead();
-    //    if (session->room->CanEnd())
-    //    {
-    //        session->room->EndGame();
-
-    //        //DB 접근 최후 승자만 승리+1
-
-    //        //room 제거
-
-    //        //return;
-    //    }
-
-    //    auto buffer = MakeBufferSharedPtr(userInfo, S_Dead);
-    //    session->room->Broadcast(buffer);
-    //    return;
-    //}
-
-
-    //auto buffer = MakeBufferSharedPtr(sendPacket, S_Attacked);
-    //session->room->Broadcast(buffer);
 }
 
 bool PacketHandler::ValidateUser(GameSession* session)
