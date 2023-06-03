@@ -27,8 +27,8 @@ private:
 
 	boost::asio::ip::tcp::acceptor _acceptor;
 	
-    vector<Session*> sessions;
-	deque<unsigned int> unusedSessions;
+    array<Session*, MAX_SESSION_COUNT> sessions;
+	vector<unsigned int> unusedSessions;
 
 	bool isAccepting;
 

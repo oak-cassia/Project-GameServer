@@ -9,7 +9,7 @@ class CircularBuffer
 {
 public:
 
-    CircularBuffer(int size = BUFFER_SIZE) : _pushPoint(0), _popPoint(0), _usingSpace(0), _freeSpace(size) { _buffer.resize(size); }
+    CircularBuffer(int size = BUFFER_SIZE) : _pushPoint(0), _popPoint(0), _usingSpace(0), _freeSpace(size) { }
 
     bool Enqueue(char* data, int dataLength);
 
@@ -33,7 +33,7 @@ private:
     int _freeSpace = 0;
     int _usingSpace = 0;
 
-    vector<char> _buffer;
+    array<char,BUFFER_SIZE> _buffer;
     shared_ptr<char> remainedPacket;
     shared_ptr<char> remainedHeader;
 };

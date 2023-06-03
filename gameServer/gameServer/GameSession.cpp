@@ -40,7 +40,7 @@ void GameSession::OnDisconnect()
 void GameSession::OnSend()
 {
     Session::OnSend();
-    //없어도 될 것 같음
+
 }
 
 void GameSession::OnReceive(int numberOfBytes, char* buffer)
@@ -55,7 +55,4 @@ void GameSession::OnReceive(int numberOfBytes, char* buffer)
         packetHandler.HandlePacket(this, buffer, numberOfBytes);
         packet = _buffer->PopPacket();
     }
-    
-    
-
 }

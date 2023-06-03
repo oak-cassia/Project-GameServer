@@ -13,8 +13,8 @@ const int MAX_PACKET_COUNT = 3000;
 const int TICK_IN_A_SECOND = 30;
 const float PROJECTILE_SPEED = 0.399;
 
-#define HANDLE_EXCEPTION \
-    catch (const std::exception& exception) { \
-        std::cerr << "Error: " << exception.what() << std::endl; \
-        exit(1); \
+#define HANDLE_EXCEPTION                                            \
+    catch (const std::exception& exception) {                       \
+        std::cerr << "Error: " << exception.what() << std::endl;    \
+        exit(1);                                                    \
     }

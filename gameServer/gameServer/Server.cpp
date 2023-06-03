@@ -39,7 +39,7 @@ void Server::Init(const int maxSessionCount)
 	for(int i=0;i<maxSessionCount; ++i)
 	{
 		GameSession* session = new GameSession(i,static_cast<boost::asio::io_context&> (_acceptor.get_executor().context()),this);
-		sessions.push_back(session);
+		sessions[i]=session;
 		unusedSessions.push_back(i);
 	}
 
@@ -75,8 +75,8 @@ bool Server::RegisterAccept()
 	}
 
 	isAccepting = true;
-	unsigned int sessionID = unusedSessions.front();
-	unusedSessions.pop_front();
+	unsigned int sessionID = unusedSessions.back();
+	unusedSessions.pop_back();
 
 	_acceptor.async_accept(sessions[sessionID]->GetSocket(),
 		[this,sessionID](boost::system::error_code error) { AfterAccept(sessions[sessionID], error); }
