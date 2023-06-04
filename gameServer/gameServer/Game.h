@@ -23,14 +23,12 @@ public:
 
     void UserMove(unsigned int userID,Protocol::C_Move& moveInfo);
     void UserMoveBroadcast();
-    void UserMovedBroadcast();
     void AttackedBroadcast();
     void AttackBroadcast();
     void DeadBroadcast();
 
     void Dead(unsigned int userID);
 
-    Protocol::S_Attacked GetAttackedPacket();
     bool isEnd = false;
     int winner = 0;
 private:

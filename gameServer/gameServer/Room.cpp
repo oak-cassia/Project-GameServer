@@ -35,6 +35,7 @@ void Room::Enter(GameSession* session, unsigned int userId, string userName)
 
 void Room::Leave(unsigned int userId)
 {
+    // _gameSessions이 떠났는지 확인하는 변수 및 기능 추가 필요 
     LOCK_GUARD
     auto count = _gameSessions.erase(userId);
     if (count)
@@ -54,6 +55,7 @@ void Room::Broadcast(shared_ptr<char>& buffer)
 
     for (auto& session : _gameSessions)
     {
+        //if session이 Leave 했다면 continue 하는 로직 추가 필요
         session.second->RegisterSend(buffer);
     }
 }

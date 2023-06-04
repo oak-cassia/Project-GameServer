@@ -37,12 +37,6 @@ private:
     Protocol::UserInfo _userInfo;
     Protocol::MoveInfo _moveInfo;
     mutex mutexLock;
-    //임시로 남겨둠, 아니면 이 아래는 맵에서 관리?
-    unsigned int _userID;
-    string _name;
-    int _hp;
-    float _positionX;
-    float _positionY;
-    
+   
 };
 

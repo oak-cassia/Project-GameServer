@@ -1,6 +1,5 @@
 #pragma once
 
-class User;
 class Room;
 class GameSession;
 class RoomManager

@@ -2,7 +2,7 @@
 
 class GameSession;
 class Room;
-class User;
+
 
 
 class Room

@@ -29,6 +29,7 @@ void Game::Init(int maxUserCount)
     {
         return;
     }
+
     Protocol::S_GameStart packet;
 
     float position = 3.0f;
@@ -74,12 +75,11 @@ void Game::End()
     isEnd = true;
     //_projectiles.clear();
 
-
 }
 
 void Game::Tick()
 {
-    UserMoveBroadcast();
+    //UserMoveBroadcast();
     AttackBroadcast();
     AttackedBroadcast();
     DeadBroadcast();
@@ -212,7 +212,7 @@ void Game::CalculateUserPosition(User* user)
     x += dx;
     y += dy;
     user->SetPosition(x, y);
-    //cout << x<<", " << y<<endl;
+
 }
 
 void Game::AddUser(unsigned userID, string name)
@@ -270,9 +270,9 @@ void Game::UserMove(unsigned int userID, Protocol::C_Move& packet)
     {
         return;
     }
-    _movePacket.clear_move();
 
     auto user = _users[userID];
+
     /*if (user->GetDirection() == packet.moveinfo().direction() && user->GetDistance(packet.moveinfo().positionx(), packet.moveinfo().positiony()) < 0.00666f)
     {
         return;
@@ -283,6 +283,7 @@ void Game::UserMove(unsigned int userID, Protocol::C_Move& packet)
         return;
     }
     user->SetMoveInfo(packet.moveinfo());
+
     //user->SetDirection(packet.moveinfo().direction());
 
     //cout<<" UserID "<<userID << "Direction:" <<user->GetDirection() << user->GetX() << " , " << user->GetY() << endl;
@@ -295,11 +296,6 @@ void Game::UserMove(unsigned int userID, Protocol::C_Move& packet)
     _room->Broadcast(buf);
 }
 
-Protocol::S_Attacked Game::GetAttackedPacket()
-{
-    LOCK_GUARD;
-    return _attackedPacket;
-}
 
 void Game::UserMoveBroadcast()
 {
@@ -312,10 +308,6 @@ void Game::UserMoveBroadcast()
     _room->Broadcast(buffer);
 }
 
-void Game::UserMovedBroadcast()
-{
-    
-}
 
 
 void Game::AttackedBroadcast()
@@ -357,7 +349,7 @@ void Game::Dead(unsigned userID)
     auto it = _users.find(userID);
     if (it != _users.end()) {
         delete it->second;
-        //버그위치
+
         _users.erase(it);
     }
     cout << "Dead : " << userID << endl;

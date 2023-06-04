@@ -60,6 +60,7 @@ void PacketHandler::HandleMatchingInitRoom(GameSession* session, char* data, int
 
     RoomManager& roomManager = RoomManager::GetRoomManager();
 
+    //만들어진 방이면 실패
     if (roomManager.GetRoomByRoomID(roomID) != nullptr)
     {
         Protocol::S_RoomCompleted sendPacket;
@@ -94,7 +95,7 @@ void PacketHandler::HandleClientEnterRoom(GameSession* session, char* data, int 
     RoomManager& roomManager = RoomManager::GetRoomManager();
 
     auto room = roomManager.GetRoomByRoomID(packet.roomid());
-
+    // 방 시작 시 return 하는 기능 필요
     if (room == nullptr)
     {
         //없는 방 접근

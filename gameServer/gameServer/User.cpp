@@ -2,7 +2,7 @@
 #include "User.h"
 
 User::User(unsigned userID, string name)
-:_userID(userID),_name(name),_hp(100),_positionX(0),_positionY(0),_isMoved(false)
+:_isMoved(false)
 {
 
     _userInfo.set_userid(userID);
