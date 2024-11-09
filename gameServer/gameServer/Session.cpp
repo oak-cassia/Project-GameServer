@@ -15,7 +15,6 @@ void Session::RegisterReceive()
     socket.async_read_some(
         boost::asio::buffer(_receiveBuffer),
         [this] (boost::system::error_code error,size_t transferedBytes){ AfterReceive(error, transferedBytes); }
-
     );
 }
 
