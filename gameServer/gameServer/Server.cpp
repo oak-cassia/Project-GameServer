@@ -19,7 +19,6 @@ Server::Server(boost::asio::io_context& io_context)
 
 Server::~Server()
 {
-
 	delete work_guard;
 
 	for (size_t i = 0; i < sessions.size(); ++i)
@@ -31,7 +30,6 @@ Server::~Server()
 
 		delete sessions[i];
 	}
-	
 }
 
 void Server::Init(const int maxSessionCount)
@@ -42,7 +40,6 @@ void Server::Init(const int maxSessionCount)
 		sessions[i]=session;
 		unusedSessions.push_back(i);
 	}
-
 }
 
 void Server::Start()
