@@ -12,7 +12,6 @@ public:
 	void RegisterSend(Protocol::S_GameEnd& packet);
 
 private:
-
 	void Connect();
 	void AfterConnect(const boost::system::error_code& error);
 	void RegisterReceive();
